@@ -1,7 +1,14 @@
+"""Mодуль по созданию героя РПГ."""
 from random import randint
 
 
+# Новый импорт.
+# Из модуля start_game_banner, который расположен в папке graphic_arts,
+# импортируем функцию run_screensaver().
+from graphic_arts.start_game_banner import run_screensaver
+
 def attack(char_name: str, char_class: str) -> str:
+    """Вычисляет урон в зависимости от класса."""
     if char_class == 'warrior':
         attack_warrior: float = 5 + randint(3, 5)
         return (f'{char_name} нанёс урон противнику равный '
@@ -17,9 +24,10 @@ def attack(char_name: str, char_class: str) -> str:
 
 
 def defence(char_name: str, char_class: str) -> str:
+    """Вычисляет показатель защиты в зависимости от класса."""
     if char_class == 'warrior':
         defence_warrior: float = 10 + randint(5, 10)
-        return (f'{char_name} блокировал'
+        return (f'{char_name} блокировал '
                 f'{defence_warrior} урона')
     if char_class == 'mage':
         defence_mage: float = 10 + randint(-2, 2)
@@ -32,6 +40,7 @@ def defence(char_name: str, char_class: str) -> str:
 
 
 def special(char_name: str, char_class: str) -> str:
+    """Вычисляет урон от спец. атаки в зависимости от класса."""
     if char_class == 'warrior':
         special_warrior: float = 80 + 25
         return (f'{char_name} применил специальное умение '
@@ -47,6 +56,7 @@ def special(char_name: str, char_class: str) -> str:
 
 
 def start_training(char_name: str, char_class: str) -> str:
+    """Выбор действий атака, защита, спец. прием и пропустить."""
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -72,12 +82,9 @@ def start_training(char_name: str, char_class: str) -> str:
 
 
 def choice_char_class() -> str:
-    approve_choice: str = None
-    if approve_choice is None:
-        return approve_choice
-    char_class: str = None
-    if char_class is None:
-        return char_class
+    """Проверка выбора класса."""
+    approve_choice: str = ''
+    char_class: str = ''
     while approve_choice != 'y':
         char_class: str = input('Введи название персонажа, '
                                 'за которого хочешь играть: '
@@ -99,7 +106,9 @@ def choice_char_class() -> str:
     return char_class
 
 
-def main() -> str:
+if __name__ == '__main__':
+    """Проверка имени корректности значений"""
+    run_screensaver()
     print('Приветствую тебя, искатель приключений! ')
     print('Прежде чем начать игру... ')
     char_name: str = input('...назови себя: ')
@@ -110,8 +119,6 @@ def main() -> str:
     char_class: str = choice_char_class()
     print(start_training(char_name, char_class))
 
-
-main()
 
 
 # Тестовые данные.
@@ -155,3 +162,27 @@ main()
 
 # # Тестовый вызов функции main.
 # print(main(TEST_DATA))
+
+
+# from math import sqrt
+
+# message = ('Добро пожаловать в самую лучшую программу для вычисления '
+#            'квадратного корня из заданного числа')
+
+
+# def CalculateSquareRoot(Number):
+#     """Вычисляет квадратный корень."""
+#     return sqrt(Number)
+
+
+# def calc(your_number):
+#     """Проверка значения на условие >=0."""
+#     if your_number <= 0:
+#         return 'Веди положительное число больше 0'
+#     znach = CalculateSquareRoot(your_number)
+#     return (f'Мы вычислили квадратный корень из введённого вами числа.'
+#             f' Это будет: {znach}')
+
+
+# print(message)
+# print(calc(25.5))
